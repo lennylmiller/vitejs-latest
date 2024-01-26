@@ -2,13 +2,28 @@ const template = document.createElement('template');
 template.innerHTML = /* html */`
   <link rel="stylesheet" href="/tailwind.css" />
   <style>
-    :host([validation="invalid"]) span {
-      display: block;
-      color: red;
-    }
-
     :host([validation="invalid"]) input {
       border-color: red;
+    }
+
+    :host([validation="valid"]) input {
+      border-color: green;
+    }
+
+    :host([validation=""]) span {
+      display: none;
+    }
+
+    :host([validation=""]) span {
+      display: none;
+    }
+
+    span:not([validation]) {
+      display: none;
+    }
+
+    :host([validation="none"]) span {
+      display: none;
     }
 
     :host([validation="valid"]) span {
@@ -16,24 +31,30 @@ template.innerHTML = /* html */`
       color: green;
     }
 
-    :host([validation="valid"]) input {
-      border-color: green;
+    :host([validation="invalid"]) span {
+      display: block;
+      color: red;
     }
   </style>
   <div>
-    <label for="email" class="block text-sm font-medium leading-6 text-gray-900"></label>
+    <label for="inag-input" class="block text-sm font-medium leading-6 text-gray-900"></label>
     <div id="input-error-wrapper" class="relative mt-2 rounded-md shadow-sm">
-      <input type="email" name="email" id="email"
-        class="block w-full rounded-md border-0 py-1.5 pr-10 text-red-900 ring-1 ring-inset ring-red-300 placeholder:text-red-300 focus:ring-2 focus:ring-inset focus:ring-red-500 sm:text-sm sm:leading-6"
-        placeholder="you@example.com" aria-invalid="true" aria-describedby="email-error">
+      <input name="inag-input" id="inag-input"
+        class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        placeholder="" aria-invalid="true" aria-describedby="inag-input">
     </div>
-    <span class="mt-2 text-sm text-red-600" id="email-error"></span>
+    <span class="mt-2 text-sm text-red-600" id="inag-input-error"></span>
   </div>
 `;
 
 export class Input extends HTMLElement {
+  label 
+  input
+  span
+  validation
+
   static get observedAttributes() {
-    return ['help'];
+    return ['help', 'validation'];
   }
 
   constructor() {
@@ -60,8 +81,11 @@ export class Input extends HTMLElement {
     )
   }
 
-  connectedCallback() {
+  nonnectedCallback() {
+    // 1. Render a cloned template to the shadowDom
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+    // 2. Create a reference to the active elements
     const label = this.shadowRoot.querySelector('label');
     label.textContent = this.getAttribute('label');
 
@@ -69,7 +93,7 @@ export class Input extends HTMLElement {
     this.span.textContent = this.getAttribute('help');
 
     const input = this.shadowRoot.querySelector('input');
-    input.type = this.getAttribute('type');
+    input.type = this.getAttribute('type') || 'text';
     input.addEventListener('input', (event) => {
       event.stopPropagation();
       input.dispatchEvent(
@@ -81,9 +105,60 @@ export class Input extends HTMLElement {
       )
     });
   }
+  
+  connectedCallback() {
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    const label = this.shadowRoot.querySelector('label');
+    label.textContent = this.getAttribute('label');
 
-  attributeChangedCallback(name, prev, curr) {
-    this.span.textContent = newValue;
+    this.span = this.shadowRoot.querySelector('span');
+    this.span.textContent = this.getAttribute('help');
+
+    const input = this.shadowRoot.querySelector('input');
+    input.type = this.getAttribute('type') || 'text';
+    input.addEventListener('input', (event) => {
+      event.stopPropagation();
+      input.dispatchEvent(
+        new CustomEvent('inag-input', {
+          bubbles: true,
+          composed: true,
+          detail: event.target.value,
+        })
+      )
+    });
+
+    console.log('connectedCallback');
+
+    // input.classList.add('validation')
+    this.validation = input.getAttribute('validation');
+
+    switch(this.validation) {
+      case 'none':
+        console.log('none');
+        input.classList.remove('error');
+        break;
+      case 'valid':
+        console.log('valid');
+        input.classList.add('success');
+        break;
+      case 'invalid':
+        console.log('invalid');
+        input.classList.add('error');
+        break;
+      default:
+        console.log('null');
+        input.classList.remove('error');
+        break;
+    }
+
+    // 1. if Validation exists and validation === 'valid' apply green to outline
+    //    or if validation exists and validation === 'none' || null apply no color to outline
+    //    or if validation exist and validation === 'invalid' apply red to outline
+
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.span ? this.span.textContent = newValue : '';
   }
 
   get help() {

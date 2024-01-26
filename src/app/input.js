@@ -73,7 +73,7 @@ class Input extends HTMLElement {
   }
 
   attributeChangedCallback(attribute, oldValue, newValue) {
-    this.span.textContent = newValue;
+    this.span ? this.span.textContent = newValue : '';
   }
 
   get help() {
