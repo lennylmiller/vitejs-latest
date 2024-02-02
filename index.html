@@ -9,6 +9,7 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" /> -->
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="preload" href="/fonts/Inter-roman.var.woff2?v=3.18" as="font" type="font/woff2" crossorigin="">
     <link rel="stylesheet" href="./src/index.css" />
@@ -32,6 +33,9 @@
   </head>
 
   <body>
+
+    <button style="display:inline;"  onclick="getPosts()">Get Posts</button>
+
     <div class="container m-auto grid grid-cols-2 justify-items-center">
       <div class="app">
         <!-- <app-login-form></app-login-form><br/> -->
@@ -48,8 +52,6 @@
         <inag-input label="Invalid" validation="invalid" help="Pay attention better"></inag-input>
       </div>
     </div>
-
-    <button onclick="getPosts()">Get Posts</button>
 
     <script>
       const setPosts = (posts) => {
