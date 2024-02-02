@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+  <head>
+    <meta charset="utf-8" />
+    <title>Native Web Component Development</title>
+    <script src="src/first-form.js" type="module"></script>
+  </head>
+
+  <body>
+    <template>
+      <div class="alert">
+        <span class="alert__text">
+          <slot></slot>
+        </span>
+        <button id="close-button" type="button" class="alert__button">x</button>
+      </div>
+    </template>
+
+    <ce-alert>Hello there</ce-alert>
+    <script>
+      const tmplt = document.createElement('template');
+      tmplt.innerHTML = /*html*/ `
+        <div class="alert" style="height: 50px;width: 100%; background-color: red;">
+          <span class="alert__text">
+            <slot></slot>
+          </span>
+          <button id="close-button" type="button" class="alert__button">x</button>
+        </div>
+      `;
+    </script>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+
+</html>

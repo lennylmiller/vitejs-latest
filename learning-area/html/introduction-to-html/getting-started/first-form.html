@@ -26,9 +26,14 @@
 				</li>
 			</ul>
 		</form>
-    <section id="tutorials">
+    <section>
+      <ul id="posts"></ul>
 
-    <script type="module" src="/src/first-form.js"></script>
+      <script>
+        fetch('http://localhost:3000/posts')
+          .then((response) => response.json())
+          .then((posts) => console.log(posts));
+      </script>
     </section>
 	</body>
 </html>
