@@ -63,7 +63,7 @@ class Input extends HTMLElement {
     input.addEventListener("input", (event) => {
       event.stopPropagation();
       input.dispatchEvent(
-        new CustomEvent("app-input", {
+        new CustomEvent("boot-input", {
           bubbles: true,
           composed: true,
           detail: event.target.value,
@@ -93,4 +93,4 @@ class Input extends HTMLElement {
   }
 }
 
-customElements.define("app-input", Input);
+customElements.define("boot-input", Input);

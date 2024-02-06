@@ -40,4 +40,4 @@ class Card extends HTMLElement {
   }
 }
 
-customElements.define("app-card", Card);
+customElements.define("boot-card", Card);

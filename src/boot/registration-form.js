@@ -2,7 +2,7 @@ import "./input.js";
 import "./button.js";
 import "./card.js";
 
-class LoginForm extends HTMLElement {
+class RegistrationForm extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -16,31 +16,31 @@ class LoginForm extends HTMLElement {
 
   connectedCallback() {
     this.shadowRoot.innerHTML = /* html */ `
-    <app-card>
+    <boot-card>
       <h3 slot="card-header">Register</h3>
-      <app-input slot="card-body" label="Username"></app-input>
-      <app-input slot="card-body" label="Email"></app-input>
-      <app-input slot="card-body" label="Password" type="password"></app-input>
-      <app-input slot="card-body" label="Password Repeat" type="password"></app-input>
-      <app-button slot="card-body">Register</app-button>
-    </app-card>
+      <boot-input slot="card-body" label="Username"></boot-input>
+      <boot-input slot="card-body" label="Email"></boot-input>
+      <boot-input slot="card-body" label="Password" type="password"></boot-input>
+      <boot-input slot="card-body" label="Password Repeat" type="password"></boot-input>
+      <boot-button slot="card-body">Register</boot-button>
+    </boot-card>
     `;
-    const appInputs = this.shadowRoot.querySelectorAll("app-input");
-    const button = this.shadowRoot.querySelector("app-button");
+    const bootInputs = this.shadowRoot.querySelectorAll("boot-input");
+    const button = this.shadowRoot.querySelector("boot-button");
     const [
       usernameInput,
       emailInput,
       passwordInput,
       passwordRepeatInput,
-    ] = appInputs;
-    usernameInput.addEventListener("app-input", (event) => {
+    ] = bootInputs;
+    usernameInput.addEventListener("boot-input", (event) => {
       this.state.username = event.detail;
       usernameInput.validation = "none";
     });
-    emailInput.addEventListener("app-input", (event) => {
+    emailInput.addEventListener("boot-input", (event) => {
       this.state.email = event.detail;
     });
-    passwordInput.addEventListener("app-input", (event) => {
+    passwordInput.addEventListener("boot-input", (event) => {
       this.state.password = event.detail;
       if (this.state.password !== this.state.passwordRepeat) {
         passwordRepeatInput.help = "Password Mismatch";
@@ -50,7 +50,7 @@ class LoginForm extends HTMLElement {
         passwordRepeatInput.validation = "valid";
       }
     });
-    passwordRepeatInput.addEventListener("app-input", (event) => {
+    passwordRepeatInput.addEventListener("boot-input", (event) => {
       this.state.passwordRepeat = event.detail;
       if (this.state.password !== this.state.passwordRepeat) {
         passwordRepeatInput.help = "Password Mismatch";
@@ -60,7 +60,7 @@ class LoginForm extends HTMLElement {
         passwordRepeatInput.validation = "valid";
       }
     });
-    this.addEventListener("click-app-button", (event) => {
+    this.addEventListener("click-boot-button", (event) => {
       button.inprogress = true;
       setTimeout(() => {
         usernameInput.validation = "invalid";
@@ -73,4 +73,4 @@ class LoginForm extends HTMLElement {
   }
 }
 
-customElements.define("app-login-form", LoginForm);
+customElements.define("boot-registration-form", RegistrationForm);

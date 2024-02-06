@@ -58,7 +58,7 @@ class Button extends HTMLElement {
     this.button.addEventListener("click", (event) => {
       event.stopPropagation();
       this.button.dispatchEvent(
-        new CustomEvent("click-app-button", {
+        new CustomEvent("click-boot-button", {
           bubbles: true,
           composed: true,
         })
@@ -95,4 +95,4 @@ class Button extends HTMLElement {
   }
 }
 
-customElements.define("app-button", Button);
+customElements.define("boot-button", Button);

@@ -33,40 +33,13 @@
   </head>
 
   <body>
-
-    <button style="display:inline;"  onclick="getPosts()">Get Posts</button>
-
-    <div class="container m-auto grid grid-cols-2 justify-items-center">
-      <div class="app">
-        <!-- <app-login-form></app-login-form><br/> -->
-        <app-input label="Blank" help="Stop and smell a rose"></app-input>
-        <app-input label="None" validation="none" help="Stop and smell a rose"></app-input>
-        <app-input label="Valid" validation="valid" help="Stop and smell a rose"></app-input>
-        <app-input label="Invalid" validation="invalid" help="Stop and smell a rose"></app-input>
-      </div>
-      <div class="inag">
-        <!-- <inag-login-form></inag-login-form><br/> -->
-        <inag-input label="Blank" help="Pay attention better"></inag-input>
-        <inag-input label="None" validation="none" help="Pay attention better"></inag-input>
-        <inag-input label="Valid" validation="valid" help="Pay attention better"></inag-input>
-        <inag-input label="Invalid" validation="invalid" help="Pay attention better"></inag-input>
-      </div>
-    </div>
-
-    <script>
-      const setPosts = (posts) => {
-        console.log('posts', posts);
-      }
-
-      const getPosts = async () => {
-        try {
-          const allPosts = await axios.get('/api/posts');
-          setPosts(allPosts.data);
-        } catch (err) {
-          console.log(err);
-        }
-      }
-    </script>
+    <label>
+      Material 3
+      <md-checkbox checked></md-checkbox>
+    </label>
+    
+    <md-outlined-button>Back</md-outlined-button>
+    <md-filled-button>Next</md-filled-button>
     <script type="module" src="/src/main.js"></script>
   </body>
 

@@ -14,7 +14,7 @@ template.innerHTML = /* html */`
   </inag-card>
 `;
 
-class LoginForm extends HTMLElement {
+class RegistrationForm extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -77,4 +77,4 @@ class LoginForm extends HTMLElement {
   }
 }
 
-customElements.define("inag-login-form", LoginForm);
+customElements.define("inag-registration-form", RegistrationForm);

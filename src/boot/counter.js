@@ -33,4 +33,4 @@ class Counter extends HTMLElement {
     console.log("adopted");
   }
 }
-customElements.define("app-counter", Counter);
+customElements.define("boot-counter", Counter);
