@@ -40,4 +40,4 @@ class Card extends HTMLElement {
   }
 }
 
-customElements.define("inag-card", Card);
+customElements.define("mwc-card", Card);

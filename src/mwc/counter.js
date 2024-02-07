@@ -44,4 +44,4 @@ export class Counter extends HTMLElement {
   }
 }
 
-customElements.define('inag-counter', Counter);
+customElements.define('mwc-counter', Counter);

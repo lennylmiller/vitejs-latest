@@ -4,14 +4,14 @@ import "./card.js";
 
 const template = document.createElement('template');
 template.innerHTML = /* html */`
-  <inag-card>
+  <mwc-card>
     <h3 slot="card-header">Register</h3>
-    <inag-input slot="card-body" label="Username"></inag-input>
-    <inag-input slot="card-body" label="Email"></inag-input>
-    <inag-input slot="card-body" label="Password" type="password"></inag-input>
-    <inag-input slot="card-body" label="Password Repeat" type="password"></inag-input>
-    <inag-button slot="card-body">Register</inag-button>
-  </inag-card>
+    <mwc-input slot="card-body" label="Username"></mwc-input>
+    <mwc-input slot="card-body" label="Email"></mwc-input>
+    <mwc-input slot="card-body" label="Password" type="password"></mwc-input>
+    <mwc-input slot="card-body" label="Password Repeat" type="password"></mwc-input>
+    <mwc-button slot="card-body">Register</mwc-button>
+  </mwc-card>
 `;
 
 class RegistrationForm extends HTMLElement {
@@ -29,22 +29,22 @@ class RegistrationForm extends HTMLElement {
   connectedCallback() {
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    const inagInputs = this.shadowRoot.querySelectorAll("inag-input");
-    const button = this.shadowRoot.querySelector("inag-button");
+    const mwcInputs = this.shadowRoot.querySelectorAll("mwc-input");
+    const button = this.shadowRoot.querySelector("mwc-button");
     const [
       usernameInput,
       emailInput,
       passwordInput,
       passwordRepeatInput,
-    ] = inagInputs;
-    usernameInput.addEventListener("inag-input", (event) => {
+    ] = mwcInputs;
+    usernameInput.addEventListener("mwc-input", (event) => {
       this.state.username = event.detail;
       usernameInput.validation = "none";
     });
-    emailInput.addEventListener("inag-input", (event) => {
+    emailInput.addEventListener("mwc-input", (event) => {
       this.state.email = event.detail;
     });
-    passwordInput.addEventListener("inag-input", (event) => {
+    passwordInput.addEventListener("mwc-input", (event) => {
       this.state.password = event.detail;
       if (this.state.password !== this.state.passwordRepeat) {
         passwordRepeatInput.help = "Password Mismatch";
@@ -54,7 +54,7 @@ class RegistrationForm extends HTMLElement {
         passwordRepeatInput.validation = "valid";
       }
     });
-    passwordRepeatInput.addEventListener("inag-input", (event) => {
+    passwordRepeatInput.addEventListener("mwc-input", (event) => {
       this.state.passwordRepeat = event.detail;
       if (this.state.password !== this.state.passwordRepeat) {
         passwordRepeatInput.help = "Password Mismatch";
@@ -64,7 +64,7 @@ class RegistrationForm extends HTMLElement {
         passwordRepeatInput.validation = "valid";
       }
     });
-    this.addEventListener("click-inag-button", (event) => {
+    this.addEventListener("click-mwc-button", (event) => {
       button.inprogress = true;
       setTimeout(() => {
         usernameInput.validation = "invalid";
@@ -77,4 +77,4 @@ class RegistrationForm extends HTMLElement {
   }
 }
 
-customElements.define("inag-registration-form", RegistrationForm);
+customElements.define("mwc-registration-form", RegistrationForm);

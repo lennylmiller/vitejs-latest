@@ -44,4 +44,4 @@ export class Button extends HTMLElement {
   }
 }
 
-customElements.define('inag-button', Button);
+customElements.define('mwc-button', Button);

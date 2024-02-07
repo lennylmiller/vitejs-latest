@@ -1,7 +1,7 @@
 const template = document.createElement('template');
 template.innerHTML = /* html */`
   <link rel="stylesheet" href="/tailwind.css" />
-  <style>
+  <!-- <style>
     :host([validation="invalid"]) input {
       border-color: red;
     }
@@ -36,14 +36,29 @@ template.innerHTML = /* html */`
       color: red;
     }
   </style>
-  <div>
-    <label for="inag-input" class="block text-sm font-medium leading-6 text-gray-900"></label>
+  <style>
+    :root {
+      --md-outlined-text-field-container-shape: 0px;
+      --md-sys-typescale-body-large: 400 1rem system-ui;
+      --md-sys-color-primary: #006a6a;
+      --md-outlined-text-field-label-text-color: #3f4948;
+      --md-outlined-text-field-input-text-color: #161d1d;
+    }
+  </style> -->
+
+  <md-outlined-text-field label="Outlined" value="Value"></md-outlined-text-field>
+
+  <!-- <div>
+    <label for="mwc-input" class="block text-sm font-medium leading-6 text-gray-900"></label>
     <div id="input-error-wrapper" class="relative mt-2 rounded-md shadow-sm">
-      <input name="inag-input" id="inag-input"
+      <input name="mwc-input" id="mwc-input"
         class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-        placeholder="" aria-invalid="true" aria-describedby="inag-input">
+        placeholder="" aria-invalid="true" aria-describedby="mwc-input">
     </div>
-    <span class="mt-2 text-sm text-red-600" id="inag-input-error"></span>
+    <span class="mt-2 text-sm text-red-600" id="mwc-input-error"></span>
+
+    <md-outlined-text-field label="Label" value="Value">
+    </md-outlined-text-field> -->
   </div>
 `;
 
@@ -97,7 +112,7 @@ export class Input extends HTMLElement {
     input.addEventListener('input', (event) => {
       event.stopPropagation();
       input.dispatchEvent(
-        new CustomEvent('inag-input', {
+        new CustomEvent('mwc-input', {
           bubbles: true,
           composed: true,
           detail: event.target.value,
@@ -119,7 +134,7 @@ export class Input extends HTMLElement {
     input.addEventListener('input', (event) => {
       event.stopPropagation();
       input.dispatchEvent(
-        new CustomEvent('inag-input', {
+        new CustomEvent('mwc-input', {
           bubbles: true,
           composed: true,
           detail: event.target.value,
@@ -178,4 +193,4 @@ export class Input extends HTMLElement {
   }
 }
 
-customElements.define('inag-input', Input);
+customElements.define('mwc-input', Input);
