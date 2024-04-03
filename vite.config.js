@@ -6,16 +6,6 @@ import { defineConfig, loadEnv } from 'vite';
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
   const config = {
-    esbuild: {
-      minify: true,
-    },
-    build: {
-      lib: {
-        entry: './src/index.js',
-        name: 'web-components',
-        fileName: (format) => `web-components.${format}.js`,
-      },
-    },
     plugins: [],
     server: {
       proxy: {

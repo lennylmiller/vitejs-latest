@@ -3,16 +3,14 @@
 
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous" /> -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="preload" href="/fonts/Inter-roman.var.woff2?v=3.18" as="font" type="font/woff2" crossorigin="">
-    <link rel="stylesheet" href="./src/index.css" />
+    <!-- <link rel="stylesheet" href="./src/index.css" /> -->
     <style>
       .dark {
         --element-bg-color: rgb(34, 34, 70);
@@ -29,52 +27,62 @@
         display: none;
       }
     </style>
-    <title>Vite + Lit</title>
+    <title>Inner Agility Web Components</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="demo/assets/demo.css">
   </head>
 
   <body>
 
-    <button style="display:inline;"  onclick="getTutorials()">Get Posts</button>
+    <main>
+      <material-app-bar id="main-app-bar" label="Inner Agility Web Components">
+        <a href="/material-webcomponents" slot="left-content">
+          <img src="demo/assets/custom-elements.svg" />
+        </a>
+        <a href="https://github.com/DannyMoerkerke/material-webcomponents" target="_blank" slot="right-content">
+          <img src="demo/assets/github.svg" />
+        </a>
+      </material-app-bar>
 
-    <div class="container m-auto grid grid-cols-3 justify-items-center">
-      <div class="boot">
-        <boot-registration-form></boot-registration-form><br/>
-        <boot-input label="Blank" help="Stop and smell a rose"></boot-input>
-        <boot-input label="None" validation="none" help="Stop and smell a rose"></boot-input>
-        <boot-input label="Valid" validation="valid" help="Stop and smell a rose"></boot-input>
-        <boot-input label="Invalid" validation="invalid" help="Stop and smell a rose"></boot-input>
-      </div>
-      <div class="mwc">
-        <mwc-registration-form></mwc-registration-form><br/>
-        <mwc-input label="Blank" help="Pay attention better"></mwc-input>
-        <mwc-input label="None" validation="none" help="Pay attention better"></mwc-input>
-        <mwc-input label="Valid" validation="valid" help="Pay attention better"></mwc-input>
-        <mwc-input label="Invalid" validation="invalid" help="Pay attention better"></mwc-input>
-      </div>
-      <div class="inag">
-        <inag-registration-form></inag-registration-form><br/>
-        <inag-input label="Blank" help="Pay attention better"></inag-input>
-        <inag-input label="None" validation="none" help="Pay attention better"></inag-input>
-        <inag-input label="Valid" validation="valid" help="Pay attention better"></inag-input>
-        <inag-input label="Invalid" validation="invalid" help="Pay attention better"></inag-input>
-      </div>
-    </div>
+      <material-app-bar id="mobile-app-bar">
+        <i class="material-icons" slot="left-content">menu</i>
+        <a href="https://github.com/DannyMoerkerke/material-webcomponents" target="_blank" slot="right-content">
+          <img src="demo/assets/github.svg" />
+        </a>
+      </material-app-bar>
 
-    <script>
-      const setTutorials = (tutorials) => {
-        console.log('tutorials', tutorials);
-      }
+      <material-drawer id="main-menu">
+        <ul slot="content">
+          <li><a slot="item" href="/material-webcomponents/material-app-bar">material-app-bar</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-button">material-button</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-card">material-card</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-checkbox">material-checkbox</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-datepicker">material-datepicker</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-dialog">material-dialog</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-bottom-sheet">material-bottom-sheet</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-dropdown">material-dropdown</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-loader">material-loader</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-progress">material-progress</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-drawer">material-drawer</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-radiobutton">material-radiobutton</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-slider">material-slider</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-switch">material-switch</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-table">material-table</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-tabs">material-tabs</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-textfield">material-textfield</a></li>
+          <li><a slot="item" href="/material-webcomponents/material-slidemenu">material-slidemenu</a></li>
+        </ul>
+      </material-drawer>
 
-      const getTutorials = async () => {
-        try {
-          const alltutorials = await axios.get('/api/tutorials');
-          setTutorials(alltutorials.data);
-        } catch (err) {
-          console.log(err);
-        }
-      }
-    </script>
-    <script type="module" src="/src/main.js"></script>
+      <div id="sidebar"></div>
+      <div id="content"></div>
+    </main>
+
+    <script type="module" src="src/components/material/bundle.js"></script>
+    <script type="module" src="lib/init.js"></script>
+    <script src="lib/polyfill-loader.js"></script>
+
   </body>
 
 </html>
