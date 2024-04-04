@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <script src="../../../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../../../node_modules/sinon/pkg/sinon.js"></script>
+    <script src="../../../../node_modules/chai/chai.js"></script>
+    <script src="../../../../node_modules/mocha/mocha.js"></script>
+
+    <script>
+      window.expect = chai.expect;
+      window.assert = chai.assert;
+      mocha.setup('bdd');
+    </script>
+
+    <script type="module" src="./inag-app-bar.test.js"></script>
+    <script type="module" src="./inag-button.test.js"></script>
+    <script type="module" src="./inag-checkbox.test.js"></script>
+    <script type="module" src="./inag-datepicker.test.js"></script>
+    <script type="module" src="./inag-dialog.test.js"></script>
+    <script type="module" src="./inag-drawer.test.js"></script>
+    <script type="module" src="./inag-dropdown.test.js"></script>
+    <script type="module" src="./inag-progress.test.js"></script>
+    <script type="module" src="./inag-radiobutton.test.js"></script>
+    <script type="module" src="./inag-radiobutton-group.test.js"></script>
+    <script type="module" src="./inag-slidemenu.test.js"></script>
+    <script type="module" src="./inag-slider.test.js"></script>
+    <script type="module" src="./inag-switch.test.js"></script>
+    <script type="module" src="./inag-table.test.js"></script>
+    <script type="module" src="./inag-tabs.test.js"></script>
+    <script type="module" src="./inag-textfield.test.js"></script>
+
+    <script type="module">
+      mocha.run();
+    </script>
+
+    <link rel="stylesheet" href="../../../../node_modules/mocha/mocha.css">
+  </head>
+
+  <body>
+    <div id="mocha"></div>
+  </body>
+
+</html>

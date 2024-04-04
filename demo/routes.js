@@ -1,58 +1,37 @@
 import router from '../src/router.js';
 import {template as index} from './partials/index.js';
-import {template as appBar} from './partials/material-app-bar.js';
-import {template as button} from './partials/material-button.js';
-import {template as card} from './partials/material-card.js';
-import {template as checkBox} from './partials/material-checkbox.js';
-import {template as datePicker} from './partials/material-datepicker.js';
-import {template as dialog} from './partials/material-dialog.js';
-import {template as bottomSheet} from './partials/material-bottom-sheet.js';
-import {template as dropDown} from './partials/material-dropdown.js';
-import {template as progress} from './partials/material-progress.js';
-import {template as drawer} from './partials/material-drawer.js';
-import {template as radio} from './partials/material-radiobutton.js';
-import {template as slider} from './partials/material-slider.js';
-import {template as materialSwitch} from './partials/material-switch.js';
-import {template as table} from './partials/material-table.js';
-import {template as tabs} from './partials/material-tabs.js';
-import {template as text} from './partials/material-textfield.js';
-import {template as slideMenu} from './partials/material-slidemenu.js';
-import {template as loader} from './partials/material-loader.js';
+import {template as appBar} from './partials/inag-app-bar.js';
+import {template as button} from './partials/inag-button.js';
+import {template as card} from './partials/inag-card.js';
+import {template as checkBox} from './partials/inag-checkbox.js';
+import {template as datePicker} from './partials/inag-datepicker.js';
+import {template as dialog} from './partials/inag-dialog.js';
+import {template as bottomSheet} from './partials/inag-bottom-sheet.js';
+import {template as dropDown} from './partials/inag-dropdown.js';
+import {template as progress} from './partials/inag-progress.js';
+import {template as drawer} from './partials/inag-drawer.js';
+import {template as radio} from './partials/inag-radiobutton.js';
+import {template as slider} from './partials/inag-slider.js';
+import {template as inagSwitch} from './partials/inag-switch.js';
+import {template as table} from './partials/inag-table.js';
+import {template as tabs} from './partials/inag-tabs.js';
+import {template as text} from './partials/inag-textfield.js';
+import {template as slideMenu} from './partials/inag-slidemenu.js';
+import {template as loader} from './partials/inag-loader.js';
 
 const outlet = document.querySelector('#content');
 
 router(outlet, [
-  {
-    url: '/material-webcomponents',
-    template: index
-  },
-  {
-    url: '/material-webcomponents/',
-    template: index
-  },
-  {
-    url: '/material-webcomponents/material-app-bar',
-    template: appBar
-  },
-  {
-    url: '/material-webcomponents/material-button',
-    template: button
-  },
-  {
-    url: '/material-webcomponents/material-card',
-    template: card
-  },
-  {
-    url: '/material-webcomponents/material-checkbox',
-    template: checkBox
-  },
-  {
-    url: '/material-webcomponents/material-datepicker',
-    template: datePicker,
-    controller() {
-      const picker = document.querySelector('material-datepicker');
-      const field = document.querySelector('material-textfield');
-      const dialog = document.querySelector('material-dialog');
+  {url: '/inag-webcomponents', template: index},
+  {url: '/inag-webcomponents/', template: index},
+  {url: '/inag-webcomponents/inag-app-bar', template: appBar},
+  {url: '/inag-webcomponents/inag-button', template: button},
+  {url: '/inag-webcomponents/inag-card', template: card},
+  {url: '/inag-webcomponents/inag-checkbox', template: checkBox},
+  {url: '/inag-webcomponents/inag-datepicker', template: datePicker, controller() {
+      const picker = document.querySelector('inag-datepicker');
+      const field = document.querySelector('inag-textfield');
+      const dialog = document.querySelector('inag-dialog');
       const locale = 'en-EN';
 
       field.addEventListener('focus', dialog.open.bind(dialog));
@@ -74,10 +53,7 @@ router(outlet, [
       field.value = formattedDate;
     }
   },
-  {
-    url: '/material-webcomponents/material-dialog',
-    template: dialog,
-    controller() {
+  {url: '/inag-webcomponents/inag-dialog', template: dialog, controller() {
       const standardDialog = document.querySelector('#standard-dialog');
       const modalDialog = document.querySelector('#modal-dialog');
 
@@ -87,174 +63,58 @@ router(outlet, [
       document.querySelector('#close-modal').addEventListener('click', modalDialog.close.bind(modalDialog));
     }
   },
-  {
-    url: '/material-webcomponents/material-bottom-sheet',
-    template: bottomSheet,
-    controller() {
+  {url: '/inag-webcomponents/inag-bottom-sheet', template: bottomSheet, controller() {
       const standardDialog = document.querySelector('#standard-dialog');
 
       document.querySelector('#open-standard').addEventListener('click', standardDialog.open.bind(standardDialog));
       document.querySelector('#close-standard').addEventListener('click', standardDialog.close.bind(standardDialog));
     }
   },
-  {
-    url: '/material-webcomponents/material-dropdown',
-    template: dropDown
-  },
-  {
-    url: '/material-webcomponents/material-drawer',
-    template: drawer,
-    controller() {
-      const button = document.querySelector('#material-drawer-toggle');
-      const drawer = document.querySelector('#demo-material-drawer');
+  {url: '/inag-webcomponents/inag-dropdown', template: dropDown},
+  {url: '/inag-webcomponents/inag-drawer', template: drawer, controller() {
+      const button = document.querySelector('#inag-drawer-toggle');
+      const drawer = document.querySelector('#demo-inag-drawer');
 
       button.addEventListener('click', drawer.toggle.bind(drawer));
     }
   },
-  {
-    url: '/material-webcomponents/material-loader',
-    template: loader
-  },
-  {
-    url: '/material-webcomponents/material-progress',
-    template: progress
-  },
-  {
-    url: '/material-webcomponents/material-radiobutton',
-    template: radio
-  },
-  {
-    url: '/material-webcomponents/material-slider',
-    template: slider
-  },
-  {
-    url: '/material-webcomponents/material-switch',
-    template: materialSwitch
-  },
-  {
-    url: '/material-webcomponents/material-table',
-    template: table,
-    controller() {
-      customElements.whenDefined('material-table')
+  {url: '/inag-webcomponents/inag-loader', template: loader},
+  {url: '/inag-webcomponents/inag-progress', template: progress},
+  {url: '/inag-webcomponents/inag-radiobutton', template: radio},
+  {url: '/inag-webcomponents/inag-slider', template: slider},
+  {url: '/inag-webcomponents/inag-switch', template: inagSwitch},
+  {url: '/inag-webcomponents/inag-table', template: table, controller() {
+      customElements.whenDefined('inag-table')
       .then(() => {
-        const tables = document.querySelectorAll('material-table');
+        const tables = document.querySelectorAll('inag-table');
         tables[0].data = [
-          {
-            id: 1,
-            language: 'Javascript',
-            scope: 'Frontend'
-          },
-          {
-            id: 2,
-            language: 'PHP',
-            scope: 'Backend'
-          },
-          {
-            id: 3,
-            language: 'Scala',
-            scope: 'Backend'
-          },
-          {
-            id: 4,
-            language: 'CSS',
-            scope: 'Frontend'
-          }
+          {id: 1, language: 'Javascript', scope: 'Frontend'},
+          {id: 2, language: 'PHP', scope: 'Backend'},
+          {id: 3, language: 'Scala', scope: 'Backend'},
+          {id: 4, language: 'CSS', scope: 'Frontend'}
         ];
         tables[1].data = [
-          {
-            id: 1,
-            language: 'Javascript',
-            scope: 'Frontend'
-          },
-          {
-            id: 2,
-            language: 'PHP',
-            scope: 'Backend'
-          },
-          {
-            id: 3,
-            language: 'Scala',
-            scope: 'Backend'
-          },
-          {
-            id: 4,
-            language: 'CSS',
-            scope: 'Frontend'
-          },
-          {
-            id: 5,
-            language: 'Javascript',
-            scope: 'Frontend'
-          },
-          {
-            id: 6,
-            language: 'PHP',
-            scope: 'Backend'
-          },
-          {
-            id: 7,
-            language: 'Scala',
-            scope: 'Backend'
-          },
-          {
-            id: 8,
-            language: 'CSS',
-            scope: 'Frontend'
-          },
-          {
-            id: 9,
-            language: 'Javascript',
-            scope: 'Frontend'
-          },
-          {
-            id: 10,
-            language: 'PHP',
-            scope: 'Backend'
-          },
-          {
-            id: 11,
-            language: 'Scala',
-            scope: 'Backend'
-          },
-          {
-            id: 12,
-            language: 'CSS',
-            scope: 'Frontend'
-          },
-          {
-            id: 13,
-            language: 'Javascript',
-            scope: 'Frontend'
-          },
-          {
-            id: 14,
-            language: 'PHP',
-            scope: 'Backend'
-          },
-          {
-            id: 15,
-            language: 'Scala',
-            scope: 'Backend'
-          },
-          {
-            id: 16,
-            language: 'CSS',
-            scope: 'Frontend'
-          }
+          {id: 1, language: 'Javascript', scope: 'Frontend'},
+          {id: 2, language: 'PHP', scope: 'Backend'},
+          {id: 3, language: 'Scala', scope: 'Backend'},
+          {id: 4, language: 'CSS', scope: 'Frontend'},
+          {id: 5, language: 'Javascript', scope: 'Frontend'},
+          {id: 6, language: 'PHP', scope: 'Backend'},
+          {id: 7, language: 'Scala', scope: 'Backend'},
+          {id: 8, language: 'CSS', scope: 'Frontend'},
+          {id: 9, language: 'Javascript', scope: 'Frontend'},
+          {id: 10, language: 'PHP', scope: 'Backend'},
+          {id: 11, language: 'Scala', scope: 'Backend'},
+          {id: 12, language: 'CSS', scope: 'Frontend'},
+          {id: 13, language: 'Javascript', scope: 'Frontend'},
+          {id: 14, language: 'PHP', scope: 'Backend'},
+          {id: 15, language: 'Scala', scope: 'Backend'},
+          {id: 16, language: 'CSS', scope: 'Frontend'}
         ];
       });
     }
   },
-  {
-    url: '/material-webcomponents/material-tabs',
-    template: tabs
-  },
-  {
-    url: '/material-webcomponents/material-textfield',
-    template: text
-  },
-  {
-    url: '/material-webcomponents/material-slidemenu',
-    template: slideMenu
-  }
+  {url: '/inag-webcomponents/inag-tabs', template: tabs},
+  {url: '/inag-webcomponents/inag-textfield', template: text},
+  {url: '/inag-webcomponents/inag-slidemenu', template: slideMenu}
 ]);
